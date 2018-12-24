@@ -5,18 +5,17 @@ import argparse
 import glob
 import re
 
-
+# arg parser
 def get_args():
     parser = argparse.ArgumentParser()
 
     if sys.stdin.isatty():
         parser.add_argument("directory", help="please set directory", type=str)
-
-    # 結果を受ける
     args = parser.parse_args()
 
-    return(args)
+    return args
 
+# get psd files list
 def get_psd_files(dir):
     # Get all file & dirs
     psd_files=glob.glob(dir+"/*.psd" , recursive=True)
@@ -28,10 +27,15 @@ def jpg_path(path):
     return path[::-1].replace(psd,jpg,1)[::-1]
 
 def psd_to_jpg(file_path):
-    psd=PSDImage.load(file_path)
-    pil_image=psd.as_PIL()
-    print(jpg_path(file_path))
-    pil_image.save(jpg_path(file_path))
+
+    try:
+        psd=PSDImage.load(file_path)
+        pil_image=psd.as_PIL()
+        print(jpg_path(file_path))
+        pil_image.save(jpg_path(file_path))
+        os.remove(file_path)
+    except :
+        pass
 
 
 
@@ -47,7 +51,7 @@ if __name__ == '__main__':
     if os.path.exists(dir):
         psd_files=get_psd_files(dir)
     else:
-        print("Please input directory")
+        print("directory not exist")
         exit()
 
     for x in psd_files:
