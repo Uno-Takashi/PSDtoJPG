@@ -31,7 +31,6 @@ def psd_to_jpg(file_path):
     try:
         psd=PSDImage.load(file_path)
         pil_image=psd.as_PIL()
-        print(jpg_path(file_path))
         pil_image.save(jpg_path(file_path))
         os.remove(file_path)
     except :
