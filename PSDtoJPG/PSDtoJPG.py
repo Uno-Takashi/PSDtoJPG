@@ -4,6 +4,7 @@ import os
 import argparse
 import glob
 import re
+from pathlib import Path
 
 # arg parser
 def get_args():
@@ -18,7 +19,12 @@ def get_args():
 # get psd files list
 def get_psd_files(dir):
     # Get all file & dirs
-    psd_files=glob.glob(dir+"/*.psd" , recursive=True)
+    p = Path(dir)
+    pre_files=list(p.glob("**/*"))
+    psd_files=[]
+    for x in pre_files:
+        if x.suffix==".psd":
+            psd_files.append(x)
     return psd_files
 
 def jpg_path(path):
@@ -27,7 +33,6 @@ def jpg_path(path):
     return path[::-1].replace(psd,jpg,1)[::-1]
 
 def psd_to_jpg(file_path):
-
     try:
         psd=PSDImage.load(file_path)
         pil_image=psd.as_PIL()
@@ -44,14 +49,17 @@ if __name__ == '__main__':
     if hasattr(args,"directory"):
         dir=args.directory
     else:
-        print("Please input directory")
+        print(">> Please input directory")
         exit()
     psd_files=[]
     if os.path.exists(dir):
-        psd_files=get_psd_files(dir)
+        psd_files.extend(get_psd_files(dir))
     else:
-        print("directory not exist")
+        print(">> Directory not exist")
         exit()
 
     for x in psd_files:
-        psd_to_jpg(x)
+        print(">> converting "+str(x))
+        psd_to_jpg(str(x))
+
+    print(">> All files converted")
