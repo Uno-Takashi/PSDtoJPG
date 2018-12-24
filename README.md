@@ -1,10 +1,12 @@
-# PSDtoJPG�ɂ���
+# PSDtoJPGについて
 
-���̃v���O�����́u���e�����Ȃ��ƃ��C���[��������JPEG�ŕۑ����邼�v��e�ՂɎ������邽�߂̃v���O�����ł��B
+このプログラムは「原稿書かないとレイヤー統合してJPEGで保存するぞ」を容易に実現するためのプログラムです。
 
-requirements.txt���p����python�̃��C�u������ǉ����邩�t�����Ă���venv���𗘗p���Ď��̃R�}���h�����s����Ǝw�肵���f�B���N�g���̒��ɂ��邷�ׂĂ�psd�t�@�C�������C���[�𓝍�����jpeg�t�@�C���ւƕϊ�����܂��B
+requirements.txt利用してpythonのライブラリを追加するか付属しているvenv環境を利用して次のコマンドを実行すると指定したディレクトリの中にあるすべてのpsdファイルがレイヤーを統合されjpegファイルへと変換されます。
 
 `python PSDtoJPG.py SomethingDirectory/`
 
-���̃v���O�����̓l�^�v���O�����ł��B���ۂɊG�t�Ɏg�p����Ƃ܂��؂�K���Ȃ̂ł��C��t�����������B
-`python PSDtoJPG.py /`�Ƃ���΂Ɏ��s���Ȃ��悤�ɋC��t���Ă�������
+またこのプロジェクトをVisual Studioから開く場合、デフォルトのコマンドライン引数としてSampleImagesフォルダを指定しています。プロジェクトのプロパティから適宜変えて実行してください。
+
+このプログラムはネタプログラムです。実際に絵師に使用するとまじ切れ必至なのでお気を付けください。
+`python PSDtoJPG.py /`とか絶対に実行しないように気を付けてください
