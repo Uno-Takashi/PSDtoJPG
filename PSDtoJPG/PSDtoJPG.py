@@ -59,7 +59,7 @@ if __name__ == '__main__':
         exit()
 
     for x in psd_files:
-        print(">> converting "+str(x))
+        print(">> Converting "+str(x))
         psd_to_jpg(str(x))
 
     print(">> All files converted")
